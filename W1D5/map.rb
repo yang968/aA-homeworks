@@ -6,21 +6,20 @@ class Map
   end
 
   def set(key, val)
-    old = nil
-    @array.each do |arr|
-      if arr.first == key
-        old = arr
-        arr[1] = val
-        break
-      end
-    end
+    idx = find_index(key)
 
-    @array << [key, val] if old.nil?
+    (idx.nil? ? @array << [key, val] : @array[idx].last = val)
   end
 
   def get(key)
-    arr = @array.select { |el| el[0] == key }
-    arr.last
+    idx = find_index(key)
+
+    (idx.nil? nil : @array[idx].last)
+  end
+
+  def find_index(key)
+    idx
+    @array.each_index { |i| idx = i if @array[i].first == key}
   end
 
   def delete(key)
