@@ -5,7 +5,7 @@ class Queue
   end
 
   def enqueue(el)
-    @array << push(el)
+    @array << el
   end
 
   def dequeue
