@@ -86,20 +86,22 @@ end
 
 class Playwright
   attr_accessor :name, :birth_year
+  attr_reader :id
 
   def self.all
     data = PlayDBConnection.instance.execute("SELECT * FROM playwrights")
+    # p data
     data.map { |datum| Playwright.new(datum) }
   end
 
   def self.find_by_name(name)
-    pw = PlayDBConnection.instance.execute(<<-SQL, @name)
+    pw = PlayDBConnection.instance.execute(<<-SQL, name)
       SELECT
         *
       FROM
         playwrights
       WHERE
-        name = @name
+        name = ?
     SQL
 
     return nil if pw.empty?
