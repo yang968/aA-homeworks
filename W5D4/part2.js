@@ -5,18 +5,19 @@ const reader = readline.createInterface({
   output: process.stdout
 });
 
-function teaAndBiscuits(callback) {
+function teaAndBiscuits() {
   let firstAnswer, secondAnswer;
 
-  reader.question("Would you like some tea?", function (answer1) {
+  reader.question("Would you like some tea? ", function (answer1) {
     firstAnswer = answer1;
     console.log(`Tea: ${firstAnswer}`);
 
-    reader.question("Would you like some biscuits?", function (answer2) {
+    reader.question("Would you like some biscuits? ", function (answer2) {
       secondAnswer = answer2;
       console.log(`Biscuit: ${secondAnswer}`);
 
-      callback(firstAnswer, secondAnswer);
+      console.log(`Tea?: ${firstAnswer}, Biscuit?: ${secondAnswer}`);
+      reader.close();
     });
   });
 }
@@ -26,4 +27,5 @@ function answer(first, second) {
   reader.close();
 }
 
-teaAndBiscuits(answer);
+// teaAndBiscuits(answer);
+teaAndBiscuits();
